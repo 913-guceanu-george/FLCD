@@ -1,0 +1,17 @@
+FIXME - Print "PRIME" if a number is prime and "NOT PRIME" if not
+
+var a:int, i:int;
+ConsoleRead(a);
+
+i := 2;
+
+while(i <= a)
+{
+    if(a % i = 0)
+    {
+        ConsoleWrite("NOT PRIME");
+        ENDPROGRAM
+    }
+}
+ConsoleWrite("PRIME);
+ENDPROGRAM

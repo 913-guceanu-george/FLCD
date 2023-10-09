@@ -1,0 +1,18 @@
+FIXME - Program that calculates the maximum of 3 numbers that are read from the keyboard
+
+var a:int, b:int, c:int;
+var max:int;
+ConsoleRead(a,b,c);
+if (a > b)
+{
+    max := a;
+    if(c > a)
+    {
+        max := c;
+    }
+    ConsoleWrite(max)
+    ENDPROGRAM
+}
+max := b;
+ConsoleWrite(max);
+ENDPROGRAM

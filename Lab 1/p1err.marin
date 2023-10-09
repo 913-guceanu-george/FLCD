@@ -1,0 +1,11 @@
+FIXME - Program that checks if a number is odd or even
+
+var a:integer;
+ConsoleRead();
+if( a % 2 == 0 )
+{
+    ConsoleWrite("Even")
+    ENDPROGRAM
+}
+ConsoleWrite("Odd")
+ENDPROGRAM
