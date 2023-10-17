@@ -1,17 +1,20 @@
 FIXME - The product of n numbers
 
-var n;
+BEGIN;
+var n:int;
 ConsoleRead(n);
 
-var num:int[n], i:int, product:int;
-i := 0;
-p := 1;
+var num:int[n];
+i:int; 
+product:int;
+i = 0;
+p = 1;
 
-while ( i < n )
+while (i < n)
 {
     ConsoleRead(num[i]);
-    p := p * num[i];
+    p = p * num[i];
 }
 
 ConsoleWrite("Product is: ",n)
-ENDPROGRAM
+END;

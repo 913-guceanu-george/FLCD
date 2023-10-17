@@ -1,0 +1,25 @@
+*** Alphabet ***
+    a. Upper and lower case letters if the English Alphabet (a-z and A-Z)
+    b. Decimal digits (0-9)
+    c. The underline character (_)
+
+*** Lexic ***
+    a. Special symbols:
+        - operators + - / * = == < <= > >=
+        - separators () [] {} ; space
+        - reserved words: if else int BEGIN END ConsoleRead ConsoleWrite while var char
+
+    b. Identifiers:
+        - sequence of letters and digits s.t. first character is a letter:
+            <letter> ::= a|b|...|z|A|B|...|Z
+            <digit> ::= 0|1|...|9
+            <l_d> ::= <letter>|<digit>
+            <identifier> ::== <letter>|<letter><l_d>|<identifier><l_d>
+
+    c. Constants:
+        - integer:
+            <sign> ::= + | -
+            <number> ::= <digit>|<digit><number>
+            <number_constant> ::= <number>|<sign><number>
+        - character:
+            <character> ::= <letter>|<digit>

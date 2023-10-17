@@ -1,17 +1,19 @@
 FIXME - Print "PRIME" if a number is prime and "NOT PRIME" if not
 
-var a:int, i:int;
+BEGIN;
+var a:int;
+var i:int;
 ConsoleRead(a);
 
-i := 2;
+i = 2;
 
 while(i <= a)
 {
-    if(a % i = 0)
+    if(a % i == 0)
     {
         ConsoleWrite("NOT PRIME");
-        ENDPROGRAM
+        END;
     }
 }
-ConsoleWrite("PRIME);
-ENDPROGRAM
+ConsoleWrite("PRIME");
+END;
