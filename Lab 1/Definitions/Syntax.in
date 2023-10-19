@@ -1,0 +1,43 @@
+// FIXME - For the sake of simplicity all predefined tokens will be enclosed in quotes, and some will be included in predicates
+// <if> ::= if
+// <else> ::= else
+// <BEGIN> ::= BEGIN
+// <END> ::= END
+// <ConsoleRead> ::= ConsoleRead
+// <ConsoleWrite> ::= ConsoleWrite
+// <while> ::= while
+
+<relation> ::= < | > | == | <= | >=
+<operation> ::=  + | - | * | /
+<type> ::= int | char | string
+<letter> ::= a|b|...|z|A|B|...|Z
+<digit> ::= 0|1|...|9
+<character> ::= <letter>|<digit>
+<string> ::= <character>|<character><string>
+<sign> ::= + | -
+<number> ::= <digit>|<digit><number>
+<number_constant> ::= <number>|<sign><number>
+
+<value> ::= <character>|<string>|<number>|<number_constant>
+<l_d> ::= <letter>|<digit>
+<identifier> ::== <letter>|<letter><l_d>|<identifier><l_d>
+
+<declaration_stmt> ::= <"var"><identifier><":"><type>
+<array_declaration_stmt> ::= <declaration_stmt><"["><identifier><"]">|<declaration_stmt><"["><number><"]">
+
+<id_eq> ::= <identifier><"=">
+<assign_stmt> ::= <id_eq><identifier>|<id_eq><value>|<assign_stmt><operation><identifier>|<assign_stmt><operation><value>
+
+<in_relation> ::= <identifier>|<value>
+<condition> ::= <in_relation><relation><in_relation>
+<if_stmt> ::= <"if"><"("><condition><")"><"{"><stmt_list><"}"><"else"><"{"><stmt_list><"}">
+
+<io_stmt> ::= <"ConsoleRead"><"("><identifier><")">|<"ConsoleWrite"><"("><identifier><")">|<"ConsoleWrite"><"("><value><")">
+
+<while_stmt> ::= <"while"><"("><condition><")"><"{"><stmt_list><"}">
+
+<empty_stmt> ::= <"">
+
+<stmt> ::= <declaration_stmt><";">|<array_declaration_stmt><";">|<assign_stmt><";">|<io_stmt><";">|<while_stmt><";">
+<stmt_list> ::= <empty_stmt>|<stmt>|<stmt><stmt_list>
+<program> ::= <"BEGIN"><stmt_list><"END">

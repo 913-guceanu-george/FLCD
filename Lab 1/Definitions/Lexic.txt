@@ -1,5 +1,5 @@
 *** Alphabet ***
-    a. Upper and lower case letters if the English Alphabet (a-z and A-Z)
+    a. Upper and lower case letters of the English Alphabet (a-z and A-Z)
     b. Decimal digits (0-9)
     c. The underline character (_)
 
@@ -7,7 +7,7 @@
     a. Special symbols:
         - operators + - / * = == < <= > >=
         - separators () [] {} ; space
-        - reserved words: if else int BEGIN END ConsoleRead ConsoleWrite while var char
+        - reserved words: if else int char string BEGIN END ConsoleRead ConsoleWrite while var char
 
     b. Identifiers:
         - sequence of letters and digits s.t. first character is a letter:
@@ -23,3 +23,5 @@
             <number_constant> ::= <number>|<sign><number>
         - character:
             <character> ::= <letter>|<digit>
+        - string:
+            <string> ::= <character>|<character><string>
