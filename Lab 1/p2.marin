@@ -15,5 +15,6 @@ while(i <= a)
         END;
     }
 }
+
 ConsoleWrite("PRIME");
 END;

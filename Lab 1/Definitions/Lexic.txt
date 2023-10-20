@@ -1,7 +1,6 @@
 *** Alphabet ***
     a. Upper and lower case letters of the English Alphabet (a-z and A-Z)
     b. Decimal digits (0-9)
-    c. The underline character (_)
 
 *** Lexic ***
     a. Special symbols:

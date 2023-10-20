@@ -1,6 +1,6 @@
 <relation> ::= < | > | == | <= | >=
 <operation> ::=  + | - | * | /
-<type> ::= int | char | string
+<type> ::= int|char|string
 <letter> ::= a|b|...|z|A|B|...|Z
 <digit> ::= 0|1|...|9
 <character> ::= <letter>|<digit>
@@ -8,46 +8,32 @@
 <sign> ::= + | -
 <number> ::= <digit>|<digit><number>
 <number_constant> ::= <number>|<sign><number>
-<var> ::= var
-<[> ::= [
-<]> ::= ]
-<{> ::= {
-<}> ::= }
-<(> ::= (
-<)> ::= )
-<:> ::= :
-<assign_op> ::= =
-<;> ::= ;
-<if> ::= if
-<else> ::= else
-<while> ::= while
-<ConsoleRead> ::= ConsoleRead
-<ConsoleWrite> ::= ConsoleWrite
-<BEGIN> ::= BEGIN
-<END> ::= END
 
-<id_eq> ::= <identifier><assign_op>
-<in_relation> ::= <identifier>|<value>
-<condition> ::= <in_relation><relation><in_relation>
-<value> ::= <character>|<string>|<number>|<number_constant>
 <l_d> ::= <letter>|<digit>
 <identifier> ::== <letter>|<letter><l_d>|<identifier><l_d>
+<id_eq> ::= <identifier> =
+<id_or_val> ::= <identifier>|<value>
+<condition> ::= <id_or_val><relation><id_or_val>
+<value> ::= <character>|<string>|<number>|<number_constant>
+<a_e> ::= <id_or_val><operation><id_or_val>
+<arithemtical_expression> ::= a_e|(<a_e>)|((<a_e>)<operation><arithemtical_expression>)
 
 
-<declaration_stmt> ::= <var><identifier><:><type>
+<declaration_stmt> ::= var<identifier>:<type>
 
-<array_declaration_stmt> ::= <declaration_stmt><[><identifier><]>|<declaration_stmt><[><number><]>
+<array_declaration_stmt> ::= <declaration_stmt>[<identifier>]|<declaration_stmt>[<number>]
 
-<assign_stmt> ::= <id_eq><identifier>|<id_eq><value>|<assign_stmt><operation><identifier>|<assign_stmt><operation><value>
+<assign_stmt> ::= <id_eq><id_or_val>|<id_eq><arithemtical_expression>
 
-<if_stmt> ::= <if><(><condition><)><{><stmt_list><}><else><{><stmt_list><}>
+<if_stmt> ::= if(<condition>){<stmt_list>}else{<stmt_list>}
 
-<io_stmt> ::= <ConsoleRead><(><identifier><)>|<ConsoleWrite><(><identifier><)>|<ConsoleWrite><(><value><)>
+<io_stmt> ::= ConsoleRead(<identifier>)|ConsoleWrite(<id_or_val>)
 
-<while_stmt> ::= <while><(><condition><)><{><stmt_list><}>
+<while_stmt> ::= while(<condition>){<stmt_list>}
 
-<empty_stmt> ::= <"">
+<empty_stmt> ::=
 
-<stmt> ::= <declaration_stmt><;>|<array_declaration_stmt><;>|<assign_stmt><;>|<io_stmt><;>|<while_stmt><;>
+<stmt> ::= <declaration_stmt>;|<array_declaration_stmt>;|<assign_stmt>;|<io_stmt>;|<while_stmt>;
+
 <stmt_list> ::= <empty_stmt>|<stmt>|<stmt><stmt_list>
-<program> ::= <BEGIN><;><stmt_list><END><;>
+<program> ::= BEGIN;<stmt_list>END;
