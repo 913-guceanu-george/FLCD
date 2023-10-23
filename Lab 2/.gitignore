@@ -475,3 +475,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+HashTableFix.cs
+HashTableWorksForStrings.cs
