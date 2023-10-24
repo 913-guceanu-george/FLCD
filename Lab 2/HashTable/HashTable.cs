@@ -7,7 +7,7 @@ namespace Lab_2.HashTable
             Elements = new Node<Key>[HashSize];
             for (int i = 0; i < HashSize; i++)
             {
-                Elements[i] = new Node<Key>();
+                Elements[i] = new();
             }
         }
 
@@ -39,16 +39,16 @@ namespace Lab_2.HashTable
                 }
                 for (int i = oldSize; i < HashSize; i++)
                 {
-                    newElems[i] = new Node<Key>();
+                    newElems[i] = new();
                 }
                 Elements = newElems;
             }
 
             int index = HashFunc(key);
-            Elements[index] = new Node<Key> { Key = key, Value = val };
+            Elements[index] = new() { Key = key, Value = val };
         }
 
-        public String Get(Key key)
+        public string Get(Key key)
         {
             int index = HashFunc(key);
             return Elements[index].Value;
@@ -70,19 +70,22 @@ namespace Lab_2.HashTable
         public void Remove(Key key)
         {
             int index = HashFunc(key);
-            Elements[index] = null!;
+            Elements[index] = new();
         }
 
         public void Clear()
         {
             Elements = new Node<Key>[HashSize];
-            Array.Fill(Elements, default);
+            for (int i = 0; i < HashSize; i++)
+            {
+                Elements[i] = new();
+            }
         }
 
         public bool Contains(Key key)
         {
             int index = HashFunc(key);
-            return !Elements[index].Equals(string.Empty);
+            return Elements[index].Key!.Equals(string.Empty);
         }
 
         public int Count()
