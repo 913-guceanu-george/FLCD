@@ -1,4 +1,4 @@
-namespace Lab_2.HashTable
+namespace MyLang.HashTable
 {
     public class HashTable<Key>
     {

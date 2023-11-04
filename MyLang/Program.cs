@@ -1,7 +1,9 @@
-﻿using Lab_2.HashTable;
+﻿using MyLang.HashTable;
+using MyLang.Lexer;
 
 internal class Program
 {
+
     private static void TestTable()
     {
         // Set 1
@@ -37,6 +39,8 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        TestTable();
+        // TestTable();
+        Lexer lexer = new Lexer();
+        lexer.ReadTokens();
     }
 }
