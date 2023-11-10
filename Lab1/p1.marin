@@ -1,5 +1,3 @@
-FIXME - Program that calculates the maximum of 3 numbers that are read from the keyboard
-
 BEGIN;
 var a:int; 
 var b:int;

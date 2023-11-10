@@ -1,5 +1,3 @@
-FIXME - Print "PRIME" if a number is prime and "NOT PRIME" if not
-
 BEGIN;
 var a:int;
 var i:int;
@@ -11,10 +9,10 @@ while(i <= a)
 {
     if(a % i == 0)
     {
-        ConsoleWrite("NOT PRIME");
+        ConsoleWrite("NotPrime");
         END;
     }
 }
 
-ConsoleWrite("PRIME");
+ConsoleWrite("Prime");
 END;

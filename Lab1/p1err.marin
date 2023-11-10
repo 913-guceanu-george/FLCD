@@ -1,7 +1,6 @@
-FIXME - Program that checks if a number is odd or even
-
 BEGIN;
 var ~a:int;
+@;
 ConsoleRead();
 if(a % 2 == 0)
 {

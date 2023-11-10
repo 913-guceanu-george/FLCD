@@ -70,6 +70,7 @@ z
 -
 *
 /
+%
 '
 "
 [
@@ -79,8 +80,8 @@ z
 (
 )
 ;
- 
-\n
+
+newline
 BEGIN
 END
 ConsoleRead
@@ -90,6 +91,5 @@ int
 char
 string
 while
-fun
 if
 else
