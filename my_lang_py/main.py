@@ -12,11 +12,7 @@ def test_hashtable():
 
 
 def playground():
-    print(
-        re.match(
-            r"[a-zA-Z][a-zA-Z0-9]*",
-        )
-    )
+    pass
 
 
 if __name__ == "__main__":
