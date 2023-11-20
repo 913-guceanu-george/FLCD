@@ -47,14 +47,10 @@ class Lexer:
         is_quotes = self.__token_classifier.is_quotes(token)
         with open(self.__pif, "a") as file:
             if is_str:
-                # file.write(f'" -> {self.__symbol_table.search("\"")}\n')
                 file.write(f"{token.split("\"")[1]} -> {self.__symbol_table.search(token)}\n")
-                # file.write(f'" -> {self.__symbol_table.search("\"")}\n')
                 return
             if is_char:
-                # file.write(f'" -> {self.__symbol_table.search("\"")}\n')
                 file.write(f"{token.split("\"")[1]} -> {self.__symbol_table.search(token)}\n")
-                # file.write(f'" -> {self.__symbol_table.search("\"")}\n')
                 return
             if is_quotes:
                 file.write(f'{token} -> {self.__symbol_table.search(token)}\n')

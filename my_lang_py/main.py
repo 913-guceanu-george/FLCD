@@ -17,7 +17,7 @@ def playground():
 
 if __name__ == "__main__":
     # test_hashtable()
-    lex1 = Lexer("C:\\Users\\maria\\Documents\\Code\\FLCD\\Lab1\\p1err.marin")
+    lex1 = Lexer("/home/marianguceanu/Documents/Code/FLCD/Lab1/p1err.marin")
     lex1.scan()
     # lex2 = Lexer("C:\\Users\\maria\\Documents\\Code\\FLCD\\Lab1\\Definitions\\Token.in")
     # lex2.scan()
