@@ -1,0 +1,76 @@
+INITIAL STATE
+p
+STATES
+p
+q
+FINAL STATES
+p
+q
+TRANSITION FUNCTION
+p->p
+q->p
+p->q
+q->q
+ALPHABET
+a p->p q->p
+b p->p q->p
+c p->p q->p
+d p->p q->p
+e p->p q->p
+f p->p q->p
+g p->p q->p
+h p->p q->p
+i p->p q->p
+j p->p q->p
+k p->p q->p
+l p->p q->p
+m p->p q->p
+n p->p q->p
+o p->p q->p
+p p->p q->p
+q p->p q->p
+r p->p q->p
+s p->p q->p
+t p->p q->p
+u p->p q->p
+v p->p q->p
+w p->p q->p
+x p->p q->p
+y p->p q->p
+z p->p q->p
+A p->p q->p
+B p->p q->p
+C p->p q->p
+D p->p q->p
+E p->p q->p
+F p->p q->p
+G p->p q->p
+H p->p q->p
+I p->p q->p
+J p->p q->p
+K p->p q->p
+L p->p q->p
+M p->p q->p
+N p->p q->p
+O p->p q->p
+P p->p q->p
+Q p->p q->p
+R p->p q->p
+S p->p q->p
+T p->p q->p
+U p->p q->p
+V p->p q->p
+W p->p q->p
+X p->p q->p
+Y p->p q->p
+Z p->p q->p
+0 p->q q->q
+1 p->q q->q
+2 p->q q->q
+3 p->q q->q
+4 p->q q->q
+5 p->q q->q
+6 p->q q->q
+7 p->q q->q
+8 p->q q->q
+9 p->q q->q
