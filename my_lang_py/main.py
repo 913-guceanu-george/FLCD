@@ -17,10 +17,10 @@ def playground():
 
 
 if __name__ == "__main__":
-    lex1 = Lexer("C:\\Users\\maria\\Documents\\Code\\FLCD\\Lab1\\p2.marin")
-    lex1.scan()
-    # fa = FiniteAutomaton()
-    # try:
-    #     fa.run()
-    # except ValueError as e:
-    #     print(e)
+    # lex1 = Lexer("C:\\Users\\maria\\Documents\\Code\\FLCD\\Lab1\\p2.marin")
+    # lex1.scan()
+    fa = FiniteAutomaton()
+    try:
+        fa.run()
+    except ValueError as e:
+        print(e)

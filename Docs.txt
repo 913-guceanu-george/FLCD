@@ -1,0 +1,13 @@
+TODO lab 5 -> RD (Recursive descendent)
+
+Finite Automaton
+
+<state> ::= p | q 
+<alphabet> ::= a | b | ... | z | A | B | ... | Z | 0 | 1 | ... | 9
+<transitions> ::= <state> -> <state> | <state> -> <state> <transitions>
+<initial_state> ::= p
+<initial_state_segment> ::= INITIAL STATE<initial_state>
+<states_segment> ::= STATES<state>
+<final_states_segment> ::= FINAL STATES<state>
+<transitions_segment> ::= TRANSITIONS<transitions>
+<alphabet_segment> ::= ALPHABET<alphabet> <transitions>

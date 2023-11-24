@@ -1,5 +1,4 @@
-from operator import index
-from typing import List, final
+from typing import List
 
 
 class FiniteAutomaton:
@@ -41,6 +40,7 @@ class FiniteAutomaton:
                 return False
             if char not in self.__fa["ALPHABET"].keys():
                 current_state = char
+                print(f"Current state: {current_state} is not accepted!")
                 break
             if char.isnumeric():
                 build += char
