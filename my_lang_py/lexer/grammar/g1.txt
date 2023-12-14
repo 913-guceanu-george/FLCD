@@ -1,0 +1,14 @@
+N:
+S
+A
+B
+T:
+a
+b
+c
+P:
+S->Sb|c
+A->Ab|b
+B->Bc|c
+S:
+S

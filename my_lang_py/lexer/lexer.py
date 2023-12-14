@@ -17,9 +17,7 @@ class Lexer:
             "separator": r"^[;:,()\[\]\{\}]{1}$",
             "quotes": r"['\"]"
         }
-        self.__keywords: List[str] = (
-            "BEGIN END ConsoleRead ConsoleWrite int char string var while if else"
-        ).split()
+        self.__keywords  = "BEGIN END ConsoleRead ConsoleWrite int char string var while if else".split()
         self.__symbols_output_file: str = "ST.out"
         self.__pif: str = "PIF.out"
         self.__symbol_table: HashTable = HashTable(10)
@@ -47,10 +45,10 @@ class Lexer:
         is_quotes = self.__token_classifier.is_quotes(token)
         with open(self.__pif, "a") as file:
             if is_str:
-                file.write(f"{token.split("\"")[1]} -> {self.__symbol_table.search(token)}\n")
+                file.write(f"{token.split('["\']')[1]} -> {self.__symbol_table.search(token)}\n")
                 return
             if is_char:
-                file.write(f"{token.split("\"")[1]} -> {self.__symbol_table.search(token)}\n")
+                file.write(f"{token.split('"')[1]} -> {self.__symbol_table.search(token)}\n")
                 return
             if is_quotes:
                 file.write(f'{token} -> {self.__symbol_table.search(token)}\n')

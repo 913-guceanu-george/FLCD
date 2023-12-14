@@ -5,7 +5,7 @@ from hashtable.hash_table import HashTable
 
 
 class TokenClassifier:
-    def __init__(self, st: HashTable, regexes: dict, keywords: List[str]) -> None:
+    def __init__(self, st: HashTable, regexes: dict, keywords) -> None:
         self.__key = 0
         self.__regexes = regexes
         self.__keywords = keywords
