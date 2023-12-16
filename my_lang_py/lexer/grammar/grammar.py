@@ -8,7 +8,7 @@ class Grammar:
             "productions": dict,
             "start_symbol": str,  # Simple capital letter
         }
-        self.__file = "lexer/grammar/g1.txt"
+        self.__file = "lexer/grammar/g2.txt"
         self.__read_from_file()
 
     def __read_from_file(self) -> None:
@@ -53,7 +53,7 @@ class Grammar:
 
     def cfg_check(self) -> bool:
         for key in self.__grammar["productions"]:
-            if len(key) > 1:
+            if len(key.split("_")) > 1:
                 return False
         return True 
 
@@ -63,6 +63,9 @@ class Grammar:
             non_terminal:str = input("Input non-terminal(-1 for exit): ")
             if non_terminal == "-1":
                 return
+            if non_terminal not in self.__grammar["productions"]:
+                print("Invalid non-terminal")
+                continue 
             print(f"{non_terminal} -> {self.__grammar[key][non_terminal]}")
 
     def print_grammar(self) -> None:

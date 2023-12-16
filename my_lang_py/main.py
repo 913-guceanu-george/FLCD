@@ -26,7 +26,7 @@ def test_fa():
 def test_grammar():
     grammar = Grammar()
     grammar.print_grammar()
-    print(grammar.cfg_check())
+    print(f"Is grammar CFG? -> {grammar.cfg_check()}")
     grammar.check_productions_for_terminal()
 
 if __name__ == "__main__":
