@@ -1,3 +1,8 @@
+from typing import List
+
+from exceptions.customs import NotCFG
+
+
 class Grammar:
     def __init__(self) -> None:
         self.__grammar = {
@@ -7,9 +12,13 @@ class Grammar:
             # Productions will be represented as a dict where the key is the non terminal and the value is a list of productions
             "productions": dict,
             "start_symbol": str,  # Simple capital letter
+            "epsilon":"e"
         }
-        self.__file = "lexer/grammar/g2.txt"
+        self.__file = "lexer/grammar/g1.txt"
         self.__read_from_file()
+        if not self.cfg_check():
+            raise NotCFG()
+        self.__separate_grammar()
 
     def __read_from_file(self) -> None:
         with open(self.__file, "r") as file:
@@ -34,11 +43,13 @@ class Grammar:
                     continue
 
                 # Reading the current section of the file
-                match current: 
+                match current:
                     case "non_terminals":
                         self.__grammar["non_terminals"].append(line.strip())
                     case "terminals":
-                        self.__grammar["terminals"].append(line.strip())
+                        t = line.strip()
+                        if t != self.__grammar["epsilon"]:
+                            self.__grammar["terminals"].append(t)
                     case "productions":
                         # Splitting the line into the non terminal and the productions
                         non_terminal, productions = line.strip().split("->")
@@ -51,11 +62,23 @@ class Grammar:
                     case _:
                         raise Exception("Invalid file format")
 
+
+    def __separate_grammar(self):
+        for non_term in self.__grammar["productions"]:
+            new_prod:List|str = list()
+            for elem in self.__grammar["productions"][non_term]:
+                prods = list()
+                for sym in elem:
+                    prods.append(sym)
+                new_prod.append(prods)
+            self.__grammar["productions"][non_term] = new_prod
+
+
     def cfg_check(self) -> bool:
         for key in self.__grammar["productions"]:
             if len(key.split("_")) > 1:
                 return False
-        return True 
+        return True
 
     def check_productions_for_terminal(self):
         key = "productions"
@@ -65,7 +88,7 @@ class Grammar:
                 return
             if non_terminal not in self.__grammar["productions"]:
                 print("Invalid non-terminal")
-                continue 
+                continue
             print(f"{non_terminal} -> {self.__grammar[key][non_terminal]}")
 
     def print_grammar(self) -> None:
@@ -76,3 +99,6 @@ class Grammar:
                     print(key, value)
                 continue
             print(key, value)
+
+    def get_grammar(self) -> dict:
+        return self.__grammar

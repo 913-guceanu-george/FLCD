@@ -6,9 +6,11 @@ T:
 a
 b
 c
+d
+e
 P:
-S->Sb|c
-A->Ab|b
-B->Bc|c
+S->aABb
+A->c|e
+B->d|e
 S:
 S
