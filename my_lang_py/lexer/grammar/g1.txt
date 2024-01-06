@@ -7,7 +7,6 @@ a
 b
 c
 d
-e
 P:
 S->aABb
 A->c|e
