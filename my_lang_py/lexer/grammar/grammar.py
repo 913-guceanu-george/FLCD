@@ -12,7 +12,7 @@ class Grammar:
             # Productions will be represented as a dict where the key is the non terminal and the value is a list of productions
             "productions": dict,
             "start_symbol": str,  # Simple capital letter
-            "epsilon":"e"
+            "epsilon":"~"
         }
         self.__file = "lexer/grammar/g1.txt"
         self.__read_from_file()
@@ -64,9 +64,13 @@ class Grammar:
 
 
     def __separate_grammar(self):
+        # TODO - fix
         for non_term in self.__grammar["productions"]:
             new_prod:List|str = list()
             for elem in self.__grammar["productions"][non_term]:
+                if elem == self.__grammar["epsilon"]:
+                    new_prod.append([elem])
+                    continue
                 prods = list()
                 for sym in elem:
                     prods.append(sym)

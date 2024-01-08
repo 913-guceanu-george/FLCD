@@ -9,7 +9,7 @@ c
 d
 P:
 S->aABb
-A->c|e
-B->d|e
+A->c|~
+B->d|~
 S:
 S

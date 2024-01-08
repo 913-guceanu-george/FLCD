@@ -1,3 +1,5 @@
+from _typeshed import SupportsDivMod
+from abc import abstractmethod
 from hashtable.hash_table import HashTable
 from lexer.finite_automaton.fa import FiniteAutomaton
 from lexer.grammar.grammar import Grammar
@@ -22,11 +24,21 @@ def test_fa():
     except ValueError as e:
         print(e)
 
-def test_parser():
-    parser = Parser()
+def test_firsts():
+    parser:Parser = Parser() 
     print(parser.follow("S"))
     print(parser.follow("A"))
     print(parser.follow("B"))
+
+
+def test_parser():
+    parser = Parser()
+    
+    # print(parser.first("S"))
+    # print(parser.first("A"))
+    # print(parser.first("B"))
+
+    parser.print_table()
 
 def test_grammar():
     grammar = Grammar()

@@ -13,6 +13,8 @@ class Parser:
         self.__starting_symbol:str = self.__grammar["start_symbol"]
         self.__epsilon:str = self.__grammar["epsilon"]
 
+        self.construct_table()
+
     def first(self, non_terminal:str, checked_non_terms:List[str] = list()) -> List[str]:
         # First check if the given non-terminal is in our grammar
         if non_terminal not in self.__non_terminals:
@@ -36,12 +38,13 @@ class Parser:
                         first_elems.append(el)
         return first_elems
 
-    def follow(self, non_terminal:str, checked_non_terms:List[str] = list()) -> List[str]:
+    def follow(self, non_terminal:str) -> List[str]:
         # First check if the given non-terminal is in our grammar
         if non_terminal not in self.__non_terminals:
            raise ParserError(f"Non-terminal {non_terminal} is not in the grammar")
 
         follow_elems:List[str] = list()
+        checked_non_terms:List[str] = list()
 
         # Going through all the productions
         for nt in self.__productions:
@@ -86,19 +89,14 @@ class Parser:
             # Everything else is placed under the first sets
 
             for prod in self.__productions[nt]:
-                # TODO - populate the table for the first set
-                #      - check for epsilon productions
-                pass
+                if prod[0] == self.__epsilon:
+                    for term in follows:
+                        self.__parsing_table[nt][term] = (nt, prod)
+                    continue
+                for term in firsts:
+                    self.__parsing_table[nt][term] = (nt, prod)
 
-
-
-
-
-
-
-
-
-
-
-
-
+    def print_table(self):
+        for nt in self.__parsing_table:
+            for term in self.__parsing_table[nt]:
+                print(f"({nt},{term}) -> {self.__parsing_table[nt][term]}")
