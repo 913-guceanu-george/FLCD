@@ -5,15 +5,19 @@ from exceptions.customs import ParserError
 class Parser:
 
     def __init__(self) -> None:
+        # Grammar structure
         self.__grammar = Grammar().get_grammar()
-        self.__parsing_table:Dict[str, Dict] = dict()
         self.__productions:dict = self.__grammar["productions"]
         self.__terminals:list = self.__grammar["terminals"]
         self.__non_terminals:list = self.__grammar["non_terminals"]
         self.__starting_symbol:str = self.__grammar["start_symbol"]
         self.__epsilon:str = self.__grammar["epsilon"]
 
-        self.construct_table()
+        # Parser structure
+        self.__parsing_table:Dict[str, Dict] = dict()
+        self.__stack:List[str] = list()
+
+        self.__construct_table()
 
     def first(self, non_terminal:str, checked_non_terms:List[str] = list()) -> List[str]:
         # First check if the given non-terminal is in our grammar
@@ -79,7 +83,7 @@ class Parser:
         return follow_elems
 
 
-    def construct_table(self) -> None:
+    def __construct_table(self) -> None:
         for nt in self.__productions:
             firsts:List[str] = self.first(nt)
             follows:List[str] = self.follow(nt)
@@ -91,12 +95,56 @@ class Parser:
             for prod in self.__productions[nt]:
                 if prod[0] == self.__epsilon:
                     for term in follows:
-                        self.__parsing_table[nt][term] = (nt, prod)
+                        self.__parsing_table[nt][term] = prod
                     continue
                 for term in firsts:
-                    self.__parsing_table[nt][term] = (nt, prod)
+                    self.__parsing_table[nt][term] = prod
 
-    def print_table(self):
+    def parse_input(self, input:str) -> None:
+        # First terminal in the input must be in the first of the starting symbol
+        if input[0] not in self.first(self.__starting_symbol):
+            raise ParserError(f"Input {input} is not in the grammar")
+
+        # Now we can begin the parsing
+        self.__stack.append("$")
+        prod:List[str] = self.__parsing_table[self.__starting_symbol][input[0]]
+        prod.reverse()
+        # We add the elements of the corresponding production
+        for t in prod:
+            self.__stack.append(t)
+        
+        input_index = 0
+        while self.__stack[-1] != "$":
+            print(f"Stack: {self.__stack}")
+            current_in_stack = self.__stack[-1]
+            # If we have reached a terminal corresponding to the current input's terminal, we move along
+            if current_in_stack  == input[input_index]:
+                input_index += 1
+                self.__stack.pop()
+                continue
+            # If we reached epsilon, we just pop it and move along
+            if current_in_stack  == self.__epsilon:
+                self.__stack.pop()
+                continue
+            
+            # If we reach a terminal, we have to check the table for it's productions
+            if current_in_stack in self.__non_terminals:
+                self.__stack.pop()
+                prod = self.__parsing_table[current_in_stack][input[input_index]]
+                prod.reverse()
+                for t in prod:
+                    self.__stack.append(t)
+                continue
+
+            # If we reach an unparsable case, the input doesn't fit
+            if self.__stack[-1] != "$":
+                raise ParserError(f"Input {input} cannot be parsed.")
+
+        # One last print
+        print(f"Stack: {self.__stack}")
+        print(f"Input {input} accepted!")
+
+    def print_table(self) -> None:
         for nt in self.__parsing_table:
             for term in self.__parsing_table[nt]:
                 print(f"({nt},{term}) -> {self.__parsing_table[nt][term]}")

@@ -1,5 +1,3 @@
-from _typeshed import SupportsDivMod
-from abc import abstractmethod
 from hashtable.hash_table import HashTable
 from lexer.finite_automaton.fa import FiniteAutomaton
 from lexer.grammar.grammar import Grammar
@@ -39,6 +37,7 @@ def test_parser():
     # print(parser.first("B"))
 
     parser.print_table()
+    parser.parse_input("adb")
 
 def test_grammar():
     grammar = Grammar()
