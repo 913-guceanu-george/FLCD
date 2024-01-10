@@ -1,4 +1,3 @@
-from operator import eq
 from typing import List
 
 from hashtable.hash_table import HashTable

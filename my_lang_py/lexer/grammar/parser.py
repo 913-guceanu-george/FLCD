@@ -102,16 +102,17 @@ class Parser:
 
     def parse_input(self, input:str) -> None:
         # First terminal in the input must be in the first of the starting symbol
-        if input[0] not in self.first(self.__starting_symbol):
+        if input[0] not in self.first(self.__starting_symbol): 
             raise ParserError(f"Input {input} is not in the grammar")
 
         # Now we can begin the parsing
         self.__stack.append("$")
         prod:List[str] = self.__parsing_table[self.__starting_symbol][input[0]]
-        prod.reverse()
         # We add the elements of the corresponding production
+        prod.reverse()
         for t in prod:
             self.__stack.append(t)
+        prod.reverse()
         
         input_index = 0
         while self.__stack[-1] != "$":
@@ -134,15 +135,17 @@ class Parser:
                 prod.reverse()
                 for t in prod:
                     self.__stack.append(t)
+                prod.reverse()
                 continue
 
             # If we reach an unparsable case, the input doesn't fit
             if self.__stack[-1] != "$":
                 raise ParserError(f"Input {input} cannot be parsed.")
 
-        # One last print
+        # One last print, to see how the stack works
         print(f"Stack: {self.__stack}")
         print(f"Input {input} accepted!")
+        self.__stack.clear()
 
     def print_table(self) -> None:
         for nt in self.__parsing_table:

@@ -38,6 +38,7 @@ def test_parser():
 
     parser.print_table()
     parser.parse_input("adb")
+    parser.parse_input("add")
 
 def test_grammar():
     grammar = Grammar()
