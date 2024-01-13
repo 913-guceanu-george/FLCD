@@ -1,6 +1,7 @@
 from typing import Dict, List
 from lexer.grammar.grammar import Grammar
 from exceptions.customs import ParserError
+from lexer.grammar.parser_output import ParserOutput
 
 class Parser:
 
@@ -14,9 +15,10 @@ class Parser:
         self.__epsilon:str = self.__grammar["epsilon"]
 
         # Parser structure
-        self.__parsing_table:Dict[str, Dict] = dict()
+        self.__parsing_table:Dict[str, Dict[str,List[str]]] = dict()
         self.__stack:List[str] = list()
 
+        self.__output = ParserOutput() 
         self.__construct_table()
 
     def first(self, non_terminal:str, checked_non_terms:List[str] = list()) -> List[str]:
@@ -115,6 +117,8 @@ class Parser:
         prod.reverse()
         
         input_index = 0
+
+
         while self.__stack[-1] != "$":
             print(f"Stack: {self.__stack}")
             current_in_stack = self.__stack[-1]
@@ -148,6 +152,7 @@ class Parser:
         self.__stack.clear()
 
     def print_table(self) -> None:
+        print("Parsing table:")
         for nt in self.__parsing_table:
             for term in self.__parsing_table[nt]:
                 print(f"({nt},{term}) -> {self.__parsing_table[nt][term]}")

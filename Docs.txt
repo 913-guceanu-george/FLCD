@@ -1,6 +1,64 @@
-TODO lab 5 -> RD (Recursive descendent)
+--- Lexer (as a class) ---
 
-Finite Automaton
+METHODS:
+	* __read_file():
+		- Reads the contents of my program from file
+		- Returns None
+
+	* __split_program():
+		- Splits my program in tokens
+		- Returns None
+
+	* __add_token_to_pif():
+		- Adds token to the programming internal form with it's corresponding symbol table index 
+		- Returns None
+
+	* __add_token_to_st():
+		- Adds token to the symbol table, if it is an identifier or constant
+		- Returns None
+	
+	* __categorize():
+		- Checks the token classifier and adds them to the PIF/ST accordingly
+		- Returns bool:
+			-- true in case of a classification
+			-- false otherwise (token is not in language)
+	
+	* __add_errors():
+		- Builds a list of strings with all the lexical errors in the program
+		- Returns None
+	
+	* scan():
+		- Combines all the above methods in order to scan a file for lexical correctness
+		- Returns None
+
+
+--- Finite Automaton ---
+As class:
+METHODS:
+	* __open_file():
+		- Opens the file that gives the finite automaton (FA.in location)
+		- Returns List[str] which are the files's lines
+	* __menu():
+		- Prints the FA that was read from the file
+		- Returns str
+
+	* __build_fa():
+		- Gets the file from the first method and separates it into a dict with the appropriate keys
+		- Returns dict with keys: "INITIAL STATE", "STATES", "FINAL STATES", "TRANSITIONS", "ALPHABET"  
+	
+	* __is_seq_accepted():
+		- Gets a sequence (user's input) and parses it according to the FA
+		- Prints the current state of the parsing
+		- Throws according errors (for characters that are not in alphabet, etc.)
+		- Returns bool:
+			-- true: the sequence is accepted
+			-- false: the sequence is not accepted
+
+	* run():
+		- Combines all the above methods
+		- Returns false
+
+* BNF form of FA:
 
 <state> ::= p | q 
 <alphabet> ::= a | b | ... | z | A | B | ... | Z | 0 | 1 | ... | 9
@@ -11,3 +69,60 @@ Finite Automaton
 <final_states_segment> ::= FINAL STATES<state>
 <transitions_segment> ::= TRANSITIONS<transitions>
 <alphabet_segment> ::= ALPHABET<alphabet> <transitions>
+
+
+
+
+
+--- Grammar (as class) ---
+METHODS
+	* __read_from_file():
+		- Reads the grammar from the file, which must have a certain layout
+		- Returns None 
+	
+	* __separate_grammar():
+		- Separates the grammar into a dict with the keys: "non_terminals", "terminals", "productions", "start_symbol" 
+		- Returns None
+	
+	* cfg_check():
+		- Checks if the grammar is a context-free grammar
+		- Return bool
+	
+	* check_productions_for_non_terminal():
+		- Takes as input a user's desired non-terminal and checks if it has any productions
+		- Returns None
+	
+	* print_grammar():
+		- Prints the grammar in a nicer way
+		- Returns None
+	
+	* get_grammar():
+		- Returns the dict holding the grammar, which is a private field of the class
+
+
+
+
+--- LL(1) Parser (as a class) ---
+
+METHODS:
+	* first():
+		- Retrieves the first terminals from the productions of a given non-terminal
+		- Is used in computing the parsing table
+		- Returns List[str] with all the firsts
+
+	* follow():
+		- Retrieves the first terminal that pops up after the given non-terminal
+		- Is also used in computing the parsing table
+		- Returns List[str] with all the follows 
+	
+	* parse_input():
+		- Gets the input string and builds the stack
+		- Prints the stack and the parsing table
+		- Throws according errors (for unknown non terminals, etc.)
+		- Return None
+
+	* __construct_table():
+		- Builds the parsing table using the following rules:
+            		-- All eps-productions are placed under the follow sets
+            		-- Everything else is placed under the first sets
+		- Returns None

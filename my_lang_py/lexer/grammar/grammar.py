@@ -64,7 +64,6 @@ class Grammar:
 
 
     def __separate_grammar(self):
-        # TODO - fix
         for non_term in self.__grammar["productions"]:
             new_prod:List|str = list()
             for elem in self.__grammar["productions"][non_term]:
@@ -84,7 +83,7 @@ class Grammar:
                 return False
         return True
 
-    def check_productions_for_terminal(self):
+    def check_productions_for_terminal(self) -> None:
         key = "productions"
         while True:
             non_terminal:str = input("Input non-terminal(-1 for exit): ")
